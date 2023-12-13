@@ -1,15 +1,8 @@
 #!/bin/bash
 
-calculate() {
-  bc -l <<< "$1"
-}
-
-if [ $# -eq 1 ]; then
-  calculate "$1"
-  exit 0
-fi
+[ $# -eq 1 ] && { bc -l <<< "$1"; exit 0; }
 
 while read -p "> " expression && [ -n "$expression" ]; do
-  calculate "$expression"
+  bc -l <<< "$expression"
 done
 echo "Exiting..."
